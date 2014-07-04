@@ -4,8 +4,8 @@ class Article < ActiveRecord::Base
   validates :title, presence: true,
                     length: { minimum: 5 }
 
-  def ultimo
-    comments.last
-  end
+#  def ultimo
+#   comments.last
+#  end
 
 end
