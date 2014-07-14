@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   before_create :encrypt
 
-  def validarpass(email, password)
+  def validarpass
     if password == password_hash
         user
       else
