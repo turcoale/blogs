@@ -1,15 +1,16 @@
 class User < ActiveRecord::Base
-  attr_accessor :email, :password
+  attr_accessor :email, :password, :password_hash
 
-  before_save :encrypt
+  validate :validarpass
 
-  def self.authenticate(email, password)
-    user = find_by_email(email)
-    if user && user.password_hash == Digest::MD5.digest(password)
-      user
-    else
-      nil
-    end
+  before_create :encrypt
+
+  def validarpass(email, password)
+    if password == password_hash
+        user
+      else
+        nil
+      end
   end
 
   def encrypt
